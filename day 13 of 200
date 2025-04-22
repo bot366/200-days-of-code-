@@ -1,0 +1,46 @@
+
+# Maximum number of iterations
+N = 500
+
+# Tolerance level
+TOL = 0.000001
+
+# Define the function f(x)
+def fval(x):
+    return 4 * math.sin(x) - math.exp(x)
+
+# Define the derivative f'(x)
+def dfval(x):
+    return 4 * math.cos(x) - math.exp(x)
+
+# Get initial approximation from the user
+x0 = float(input("Enter the initial approximation: "))
+
+print("Iter\t xk\t\t\t f(xk)\t\t\t Error")
+
+xk = x0
+for k in range(1, N + 1):
+    fxk = fval(xk)
+    dfxk = dfval(xk)
+
+    # Prevent division by zero
+    if dfxk == 0:
+        print("Zero derivative encountered. No solution found.")
+        break
+
+    # Newton-Raphson update
+    x_next = xk - fxk / dfxk
+
+    # Relative error
+    err = abs(x_next - xk) / abs(x_next)
+
+    # Print iteration details
+    print(f"{k}\t {xk:.16f}\t {fxk:.16f}\t {err:.12f}")
+
+    if err < TOL:
+        print("\nRequired accuracy achieved; Solution is convergent.")
+        break
+
+    xk = x_next
+else:
+    print("\nThe Number of iterations exceeded the maximum limit.")
