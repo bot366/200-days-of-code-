@@ -1,0 +1,79 @@
+import math
+
+# Define the function f(x)
+def fval(x):
+    return 4 * math.sin(x) - math.exp(x)
+
+# Define the derivative f'(x)
+def dfval(x):
+    return 4 * math.cos(x) - math.exp(x)
+
+# Bisection Method
+def bisection_method(a, b, tol, max_iter):
+    if fval(a) * fval(b) >= 0:
+        print("Bisection method fails: f(a) and f(b) must have opposite signs.")
+        return None, 0
+
+    steps = 0
+    while steps < max_iter:
+        c = (a + b) / 2
+        fc = fval(c)
+
+        if abs(fc) < tol or (b - a) / 2 < tol:
+            return c, steps + 1
+
+        if fval(a) * fc < 0:
+            b = c
+        else:
+            a = c
+
+        steps += 1
+
+    return c, steps
+
+# Newton-Raphson Method
+def newton_raphson_method(x0, tol, max_iter):
+    steps = 0
+    xk = x0
+
+    for _ in range(max_iter):
+        fx = fval(xk)
+        dfx = dfval(xk)
+
+        if dfx == 0:
+            print("Zero derivative encountered. Newton-Raphson fails.")
+            return None, steps
+
+        x_next = xk - fx / dfx
+        err = abs(x_next - xk) / abs(x_next)
+
+        steps += 1
+        if err < tol:
+            return x_next, steps
+
+        xk = x_next
+
+    return xk, steps
+
+# Compare both methods
+def compare_methods():
+    TOL = 1e-6
+    MAX_ITER = 500
+
+    print("Comparing Bisection and Newton-Raphson Methods")
+    print("---------------------------------------------")
+
+    # Choose a bracket for bisection where the function changes sign
+    a = 0.0
+    b = 1.0
+    bisect_root, bisect_steps = bisection_method(a, b, TOL, MAX_ITER)
+
+    # Choose initial guess for Newton-Raphson
+    x0 = 0.5
+    nr_root, nr_steps = newton_raphson_method(x0, TOL, MAX_ITER)
+
+    print(f"\nBisection Method:\n  Root ≈ {bisect_root:.8f}, Steps = {bisect_steps}")
+    print(f"Newton-Raphson Method:\n  Root ≈ {nr_root:.8f}, Steps = {nr_steps}")
+
+# Run comparison
+compare_methods()
