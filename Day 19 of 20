@@ -1,0 +1,88 @@
+# Step1: Import Required Libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from pandas.plotting import register_matplotlib_converters
+
+# Register matplotlib converters for datetime handling
+register_matplotlib_converters()
+
+# Step 2: Load the File
+# Replace 'file_path' with the path of your file, e.g., 'data/smart_meter_data.csv'
+file_path = 'path_to_your_file.csv'
+
+# If it's a CSV file, use pd.read_csv()
+try:
+    data = pd.read_csv(file_path)
+    print(f"Successfully loaded CSV file: {file_path}")
+except Exception as e:
+    print(f"Error loading CSV: {e}")
+
+# If it's an Excel file, use pd.read_excel()
+# try:
+#     data = pd.read_excel(file_path)
+#     print(f"Successfully loaded Excel file: {file_path}")
+# except Exception as e:
+#     print(f"Error loading Excel file: {e}")
+
+# Step 3: Inspect the Data
+print("Data Overview:")
+print(data.head())  # Show the first few rows of the data
+
+# Check for missing values
+print("\nMissing values in each column:")
+print(data.isnull().sum())
+
+# Check the data types of each column
+print("\nData Types:")
+print(data.dtypes)
+
+# Step 4: Data Cleaning
+# Handle missing values by filling with the column mean (for numerical columns)
+data.fillna(data.mean(), inplace=True)
+
+# Remove duplicate rows
+data.drop_duplicates(inplace=True)
+
+# Step 5: Data Analysis
+# Example: Calculate the average meter reading
+if 'meter_reading' in data.columns:
+    average_reading = data['meter_reading'].mean()
+    print(f"\nAverage Meter Reading: {average_reading}")
+else:
+    print("\n'meter_reading' column not found in the data.")
+
+# Example: Calculate total consumption
+if 'meter_reading' in data.columns:
+    total_consumption = data['meter_reading'].sum()
+    print(f"\nTotal Consumption: {total_consumption}")
+else:
+    print("\n'meter_reading' column not found in the data.")
+
+# Step 6: Data Visualization
+# Ensure that the timestamp column exists and is in datetime format
+if 'timestamp' in data.columns:
+    data['timestamp'] = pd.to_datetime(data['timestamp'])
+    
+    # Plot the meter readings over time
+    plt.figure(figsize=(10, 6))
+    plt.plot(data['timestamp'], data['meter_reading'], label='Meter Reading')
+    plt.xlabel('Timestamp')
+    plt.ylabel('Meter Reading')
+    plt.title('Smart Meter Readings Over Time')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+else:
+    print("\n'timestamp' column not found in the data. Cannot plot.")
+
+# Step 7: Save Processed Data to a New File
+# Save cleaned data to a new CSV file
+output_file_path = 'cleaned_smart_meter_data.csv'
+data.to_csv(output_file_path, index=False)
+print(f"\nCleaned data saved to {output_file_path}")
+
+# Optionally, save to Excel
+# output_excel_path = 'cleaned_smart_meter_data.xlsx'
+# data.to_excel(output_excel_path, index=False)
+# print(f"Cleaned data saved to {output_excel_path}")
