@@ -1,0 +1,9 @@
+try:
+    amount = int(input("Enter the amount to withdraw: "))
+    if amount < 0:
+        raise ValueError("Amount cannot be negative")
+    print(f"Withdrawing ${amount}")
+except ValueError as e:
+    print(f"Error: {e}")
+finally:
+    print("Thank you for using the ATM.")
