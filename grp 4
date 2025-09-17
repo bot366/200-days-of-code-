@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeSphere - Affordable Perimeter Security for Your Home</title>
+    <meta name="description" content="SafeSphere - Affordable perimeter security system with GSM alerts, multi-sensor detection, and real-time protection for homes and businesses.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3c72;
+            --secondary-color: #2a5298;
+            --accent-color: #ff4757;
+            --text-color: #333;
+            --bg-light: #f9f9f9;
+            --white: #fff;
+        }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-color); 
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+        header { 
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); 
+            color: var(--white); 
+            text-align: center; 
+            padding: 120px 20px; 
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.1;
+        }
+        .logo { 
+            font-size: 4em; 
+            font-weight: bold; 
+            color: var(--accent-color); 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+        .tagline { 
+            font-size: 1.8em; 
+            margin: 20px 0; 
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        .cta { 
+            background: var(--accent-color); 
+            color: var(--white); 
+            padding: 15px 40px; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            display: inline-block;
+        }
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255,71,87,0.3);
+        }
+        section { 
+            padding: 80px 20px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .about, .benefits { background: var(--white); }
+        .features, .analysis, .stats { background: var(--bg-light); }
+        h2 { 
+            color: var(--primary-color); 
+            text-align: center; 
+            font-size: 2.5em; 
+            margin-bottom: 40px;
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 10px auto;
+        }
+        ul { 
+            list-style-type: none; 
+            padding: 0; 
+        }
+        ul li { 
+            margin: 10px 0; 
+            padding: 10px; 
+            background: var(--white); 
+            border-radius: 8px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        ul li:hover {
+            transform: translateX(10px);
+        }
+        ul li i { color: var(--accent-color); margin-right: 10px; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, var(--white), #f0f8ff);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .stat-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        .swot { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px; 
+        }
+        .swot div { 
+            background: var(--white); 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .swot div:hover {
+            transform: translateY(-5px);
+        }
+        .swot h3 { color: var(--primary-color); }
+        .contact { 
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); 
+            color: var(--white); 
+            text-align: center; 
+            padding: 60px 20px;
+        }
+        .contact ul { 
+            list-style: none; 
+            padding: 0; 
+        }
+        .contact li { 
+            margin: 15px 0; 
+            font-size: 1.2em; 
+        }
+        .contact i { margin-right: 10px; }
+        .contact form {
+            background: var(--white);
+            color: var(--text-color);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 30px auto;
+            text-align: left;
+        }
+        .contact form input, 
+        .contact form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header>
+        <div class="logo">SafeSphere</div>
+        <h1>Affordable, Real-Time Security with Multi-Sensor Detection and GSM Control</h1>
+        <p class="tagline">Protecting your space anytime, anywhere – for individuals, families, and businesses.</p>
+        <a href="#contact" class="cta">Get Started Today</a>
+    </header>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats fade-in">
+        <h2>Key Statistics</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">$40.46B</div>
+                <p>Global smart home security market size in 2025, growing at 13.81% CAGR.</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">847,522</div>
+                <p>Burglaries reported in the US, underscoring the need for reliable protection.</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">$230</div>
+                <p>Average cost for a starter home security kit, plus $10/month monitoring.</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <p>Of security alarms are false, reducing effective response rates.</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">19%</div>
+                <p>Decline in residential burglaries in early 2025, yet risks persist.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about fade-in">
+        <h2>About SafeSphere</h2>
+        <p>We are a team of innovators passionate about bridging the gap between technology and everyday security needs. Our project, SafeSphere, was developed to provide affordable, reliable, and user-friendly security solutions tailored for individuals, families, and businesses.</p>
+        <p>With expertise in embedded systems, electronics, and cybersecurity, we designed a multi-sensor perimeter security system that combines ultrasonic, PIR, and reed switch sensors with GSM technology for real-time alerts and remote control.</p>
+        <h3>Our Vision & Mission</h3>
+        <p><strong>Vision:</strong> To make smart security accessible to communities that cannot afford expensive commercial systems, while delivering a scalable solution that grows with user needs.</p>
+        <p><strong>Mission:</strong> Empower individuals, families, and businesses to protect their spaces without the high cost of traditional systems.</p>
+        <p><strong>Core Values:</strong> Innovation, Accessibility, Reliability, and Safety.</p>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features fade-in">
+        <h2>Smart Perimeter Security System</h2>
+        <p>The system integrates ultrasonic, PIR, and reed switch sensors with the ATmega2560 microcontroller to monitor distance, motion, and access points. Detected anomalies trigger visual, audio, and GSM alerts. PIN authentication and remote arm/disarm via GSM ensure reliability, reduce false alarms, and provide affordable, scalable, and user-friendly perimeter security around your house.</p>
+        <h3>Key Features</h3>
+        <ul>
+            <li><i class="fas fa-shield-alt"></i><strong>Multi-Sensor Detection:</strong> Ultrasonic for distance breaches, PIR for motion, and reed switches for door/window access.</li>
+            <li><i class="fas fa-mobile-alt"></i><strong>Real-Time GSM Alerts:</strong> Receive instant notifications on your phone without needing internet.</li>
+            <li><i class="fas fa-remote"></i><strong>Remote Control:</strong> Arm/disarm the system via SMS for two-way feedback.</li>
+            <li><i class="fas fa-wifi-slash"></i><strong>No Internet Required:</strong> Works reliably in areas with poor connectivity, using GSM network.</li>
+            <li><i class="fas fa-tools"></i><strong>Easy Installation:</strong> User-friendly setup for homes and businesses.</li>
+            <li><i class="fas fa-expand-arrows-alt"></i><strong>Scalable Design:</strong> Future upgrades for IoT integration.</li>
+        </ul>
+        <h3>System Process</h3>
+        <ul>
+            <li><i class="fas fa-play-circle"></i>System initialization and sensor monitoring.</li>
+            <li><i class="fas fa-exclamation-triangle"></i>Detection of motion, distance breach, or door access.</li>
+            <li><i class="fas fa-brain"></i>Microcontroller decision-making (safe, warning, intrusion).</li>
+        </ul>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits fade-in">
+        <h2>Why Choose SafeSphere?</h2>
+        <p>SafeSphere addresses high intrusion rates with a low-cost solution that's not internet-dependent or prone to false alarms. It's affordable compared to commercial systems like Ring or Hikvision, providing peace of mind for cost-sensitive markets.</p>
+        <h3>User Perspective</h3>
+        <ul>
+            <li><i class="fas fa-user"></i>Simple to use, provides peace of mind, no internet needed.</li>
+        </ul>
+        <h3>Business Perspective</h3>
+        <ul>
+            <li><i class="fas fa-building"></i>Affordable solution with high adoption potential in cost-sensitive markets.</li>
+        </ul>
+        <p><strong>Goals:</strong> Provide affordable, reliable perimeter security. Detect intrusion through multi-sensor integration. Send real-time GSM alerts with owner feedback control.</p>
+    </section>
+
+    <!-- Analysis Section -->
+    <section id="analysis" class="analysis fade-in">
+        <h2>Business Analysis</h2>
+        <div class="swot">
+            <div onclick="toggleContent(this)">
+                <h3><i class="fas fa-plus-circle"></i> Strengths</h3>
+                <div class="content" style="display: none;">
+                    <ul>
+                        <li>Multi-sensor reliability</li>
+                        <li>Remote GSM control (2-way feedback)</li>
+                        <li>Affordable compared to commercial systems</li>
+                    </ul>
+                </div>
+            </div>
+            <div onclick="toggleContent(this)">
+                <h3><i class="fas fa-minus-circle"></i> Weaknesses</h3>
+                <div class="content" style="display: none;">
+                    <ul>
+                        <li>Dependent on GSM network</li>
+                        <li>Limited coverage range (perimeter only)</li>
+                    </ul>
+                </div>
+            </div>
+            <div onclick="toggleContent(this)">
+                <h3><i class="fas fa-chart-line"></i> Opportunities</h3>
+                <div class="content" style="display: none;">
+                    <ul>
+                        <li>Rising demand for low-cost smart home solutions</li>
+                        <li>Potential partnerships with security agencies/property developers</li>
+                        <li>Scalable to IoT integration (future upgrade)</li>
+                    </ul>
+                </div>
+            </div>
+            <div onclick="toggleContent(this)">
+                <h3><i class="fas fa-exclamation-triangle"></i> Threats</h3>
+                <div class="content" style="display: none;">
+                    <ul>
+                        <li>Competition from big brands (Ring, Hikvision)</li>
+                        <li>GSM disruptions / poor mobile coverage</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <h3>PESTLE Insights</h3>
+        <p>The system benefits from government interest in security (Political), affordability for cost-sensitive users (Economic), rising safety concerns in communities (Social), advances in GSM and sensor technologies (Technological), compliance with safety regulations (Legal), and growing demand for sustainable, low-power devices in smart homes and businesses (Environmental).</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact fade-in">
+        <h2>Contact Us</h2>
+        <p>Ready to secure your home? Get in touch for a demo or more information.</p>
+        <ul>
+            <li><i class="fas fa-phone"></i> +234-810-429-2570</li>
+            <li><i class="fas fa-envelope"></i> oluropomarynifemi@gmail.com</li>
+            <li><i class="fas fa-map-marker-alt"></i> White House</li>
+        </ul>
+
+        <h3>Send Us a Message</h3>
+        <form>
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your Name" required>
+
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="Your Email" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Message" required></textarea>
+
+            <button type="submit" class="cta">Send Message</button>
+        </form>
+
+        <p>Thank you for considering SafeSphere – your partner in smart, accessible security.</p>
+    </section>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Toggle SWOT content
+        function toggleContent(element) {
+            const content = element.querySelector('.content');
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+                element.querySelector('i').className = 'fas fa-minus-circle';
+            } else {
+                content.style.display = 'none';
+                element.querySelector('i').className = 'fas fa-plus-circle';
+            }
+        }
+
+        // Form submission (placeholder)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We\'ll get back to you soon.');
+        });
+    </script>
+
+</body>
+</html>
